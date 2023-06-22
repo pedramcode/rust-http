@@ -36,7 +36,7 @@ impl HTTPMessage {
 
         let kind: Kind;
 
-        if tokens.0 == "HTTP/1.1" {
+        if tokens[0] == "HTTP/1.1" {
             kind = Kind::RESPONSE;
         }else{
             kind = Kind::REQUEST;
