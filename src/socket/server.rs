@@ -1,4 +1,4 @@
-use std::io::{Read, Write};
+use std::io::{Read};
 use std::net::{TcpListener, TcpStream};
 use std::thread;
 
@@ -35,7 +35,8 @@ fn handle_request(mut stream: TcpStream) {
     match stream.read(&mut buffer) {
         Ok(size) => {
             let request = String::from_utf8_lossy(&buffer[..size]);
-            HTTPMessage::from_string(&*request);
+            let msg = HTTPMessage::from_string(&*request).unwrap();
+            println!("{:?}", msg);
         }
         Err(e) => {
             eprintln!("Error reading request: {}", e);
